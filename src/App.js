@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState, useCallback } from "react";
+import Fetch from "./components/fetch-component/Fetch";
 import { FixedSizeList } from "react-window";
 import Header from "./components/header-files/Header";
 
@@ -13,8 +14,7 @@ function App() {
 
     if (name.trim() && name.trim() !== "") {
       try {
-        const result = await fetch(`https://api.agify.io/?name=${name}`);
-        const user = await result.json();
+        const user = await Fetch(name);
         if (user.age % 2 !== 0) {
           setOddGuess(true);
         }
